@@ -18,6 +18,7 @@ public class Beer {
         this.IBU = IBU;
         this.barList = new ArrayList<>();
         this.sponsoringBarList = new ArrayList<>();
+        this.reviewList = new ArrayList<>();
     }
 
     public String getName() {
@@ -33,7 +34,7 @@ public class Beer {
             this.name = name;
         }
         else{
-            throw new Exception("Name already exists in other beer");
+            throw new Exception("Name: " + name + " already exists in other beer");
         }
     }
 
@@ -47,6 +48,12 @@ public class Beer {
 
     public List<Review> getReviewList() {
         return reviewList;
+    }
+
+    public void addReviewList(Review review){
+        if(!reviewList.contains(review)){
+            reviewList.add(review);
+        }
     }
 
     public void addBar(Bar bar){
@@ -64,7 +71,7 @@ public class Beer {
     }
 
     public static Map<String, Beer> getBeerMap() {
-        return getBeerMap();
+        return beerMap;
     }
 
     public String getWheatType() {

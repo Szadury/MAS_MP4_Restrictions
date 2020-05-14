@@ -18,6 +18,10 @@ public class Bar {
         this.reviewList = new ArrayList<>();
     }
 
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
     public void addBeer(Beer beer){
         if(!beerMenu.contains(beer)){
             beerMenu.add(beer);
@@ -26,10 +30,6 @@ public class Bar {
         else {
             System.out.println("Beer already is in a menu");
         }
-    }
-
-    public List<Review> getReviewList() {
-        return reviewList;
     }
 
     public void addSponsoredBeer(Beer beer){
@@ -62,6 +62,12 @@ public class Bar {
 
     public String getName() {
         return name;
+    }
+
+    public void addReview(Review review) {
+        if(reviewList.contains(review)){
+            reviewList.add(review);
+        }
     }
 
     public void setName(String name) {

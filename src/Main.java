@@ -2,7 +2,6 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        //Ograniczenia atrybutu -> User age
         System.out.println("------------------ Ograniczenie atrybutu -------------------------------");
         User user1 = new User(18, "adam testowy", "atest@tt.tt", "123ewq");
         System.out.println(user1);
@@ -13,8 +12,12 @@ public class Main {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+        try{
+            user1.setAge(16);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         System.out.println("------------------ Ordered -------------------------------");
-        //Ordered BeerList w Producer bazując na nazwie piwa
 
         Beer beer1 = new Beer("Amsterdam", "Brytyjskie", "12");
         Beer beer2 = new Beer("B", "Brytyjskie", "12");
@@ -27,7 +30,6 @@ public class Main {
         System.out.println(producer.getBeerSet());
 
         System.out.println("------------------ Unikatowość -------------------------------");
-        //Unique name
         System.out.println(beer2);
         try {
             beer2.setName("Albert");
@@ -39,9 +41,9 @@ public class Main {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+        System.out.println(Beer.getBeerMap());
 
         System.out.println("------------------ Subset -------------------------------");
-        //Subset Beer <---> Bar
         Beer beer4 = new Beer("Amster", "Holenderskie", "12");
 
         Bar bar = new Bar("Bulldog", "123456789");
@@ -54,7 +56,6 @@ public class Main {
         System.out.println(bar.getSponsoredBeers());
 
         System.out.println("------------------ XOR -------------------------------");
-        //XOR
         Review review1 = new Review(beer1, user1, 5.0, "", LocalDate.now());
         review1.setBar(bar);
         Review review2 = new Review(bar, user1, 5.0, "", LocalDate.now());
@@ -65,13 +66,17 @@ public class Main {
         System.out.println(review2);
 
         System.out.println("------------------ BAG -------------------------------");
-        //BAG
         Visit visit = new Visit(LocalDate.now(), 2.0, user1, bar);
         Visit visit1 = new Visit(LocalDate.of(2020, 3, 14), 2.0, user1, bar);
         System.out.println(visit);
         System.out.println(visit1);
+        System.out.println(user1.getVisitList());
 
         System.out.println("------------------ Dowolne własne -------------------------------");
-
+        try {
+            User userBadEmail = new User(18, "Paweł", "www@", "wasd");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

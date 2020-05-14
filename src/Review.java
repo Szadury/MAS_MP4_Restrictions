@@ -8,7 +8,10 @@ public class Review {
     private String description;
     private LocalDate date;
 
-    public Review(Beer beer, User user, double rate, String description, LocalDate date) {
+    public Review(Beer beer, User user, double rate, String description, LocalDate date) throws Exception {
+        if(beer == null){
+            throw new Exception("Can't create beer review without a beer");
+        }
         this.beer = beer;
         this.bar = null;
         this.user = user;
@@ -17,7 +20,10 @@ public class Review {
         this.date = date;
     }
 
-    public Review(Bar bar, User user, double rate, String description, LocalDate date) {
+    public Review(Bar bar, User user, double rate, String description, LocalDate date) throws Exception {
+        if(bar == null){
+            throw new Exception("Can't create bar review without a bar");
+        }
         this.bar = bar;
         this.beer = null;
         this.user = user;
@@ -35,7 +41,7 @@ public class Review {
             this.bar = bar;
         }
         else{
-            System.out.println("This is review for Beer");
+            System.out.println("Cant fill bar field. This is review for Beer");
         }
     }
 
@@ -48,7 +54,7 @@ public class Review {
             this.beer = beer;
         }
         else{
-            System.out.println("This is review for Bar");
+            System.out.println("Cant fill beer field. This is review for Bar");
         }
     }
 
@@ -82,5 +88,27 @@ public class Review {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        if(bar!=null){
+            return "Review{" +
+                    "bar=" + bar.getName() +
+                    ", user=" + user +
+                    ", rate=" + rate +
+                    ", description='" + description + '\'' +
+                    ", date=" + date +
+                    '}';
+        }
+        else{
+            return "Review{" +
+                    ", beer=" + beer.getName() +
+                    ", user=" + user +
+                    ", rate=" + rate +
+                    ", description='" + description + '\'' +
+                    ", date=" + date +
+                    '}';
+        }
     }
 }
